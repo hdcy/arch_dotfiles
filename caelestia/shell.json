@@ -413,13 +413,13 @@
     "session": {
         "commands": {
             "hibernate": [
-                "systemctl",
-                "hibernate"
+                "loginctl",
+                "lock-session"
             ],
             "logout": [
-                "loginctl",
-                "terminate-user",
-                ""
+                "hyprctl",
+                "dispatch",
+                "exit"
             ],
             "reboot": [
                 "systemctl",
@@ -433,7 +433,7 @@
         "dragThreshold": 30,
         "enabled": true,
         "icons": {
-            "hibernate": "downloading",
+            "hibernate": "lock",
             "logout": "logout",
             "reboot": "cached",
             "shutdown": "power_settings_new"
