@@ -14,7 +14,7 @@
     // "color": {"1": "blue", "2": "black"},
     // "source": "$(find \"${HOME}/git_clone/dotfiles/fastfetch/ascii/\" -name \"arch.txt\")",
     "padding": {
-      // "top": 1,
+      "top": 1,
       "right": 3,
       "left": 2 
     },
@@ -24,10 +24,10 @@
     "separator": " ▸ " // :
   },
   "modules": [
+    "break",
     {
-      "type": ""
+      "type": "title"
     },
-    // "break",
     {
       "type": "custom",
       "format": "\u001b[90m┌────────────────────────────────────────────────┐"
