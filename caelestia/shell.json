@@ -1,0 +1,500 @@
+{
+    "appearance": {
+        "anim": {
+            "durations": {
+                "scale": 1
+            }
+        },
+        "padding": {
+            "scale": 1
+        },
+        "rounding": {
+            "scale": 1
+        },
+        "spacing": {
+            "scale": 0.9740302374278902
+        },
+        "transparency": {
+            "base": 0.7534194974598505,
+            "enabled": true,
+            "layers": 0.4471557277474199
+        }
+    },
+    "background": {
+        "desktopClock": {
+            "background": {
+                "blur": false,
+                "enabled": false,
+                "opacity": 0.4870711616847826
+            },
+            "enabled": true,
+            "invertColors": false,
+            "position": "top-right",
+            "scale": 1,
+            "shadow": {
+                "blur": 0.4,
+                "enabled": true,
+                "opacity": 0.7037922166149069
+            }
+        },
+        "enabled": true,
+        "visualiser": {
+            "autoHide": false,
+            "blur": false,
+            "enabled": false,
+            "rounding": 4,
+            "spacing": 1.1996212808417996
+        },
+        "wallpaperEnabled": true
+    },
+    "bar": {
+        "activeWindow": {
+            "compact": false,
+            "inverted": false,
+            "showOnHover": false
+        },
+        "clock": {
+            "background": true,
+            "showDate": false,
+            "showIcon": false
+        },
+        "dragThreshold": 20,
+        "entries": [
+            {
+                "enabled": true,
+                "id": "logo"
+            },
+            {
+                "enabled": true,
+                "id": "workspaces"
+            },
+            {
+                "enabled": true,
+                "id": "spacer"
+            },
+            {
+                "enabled": true,
+                "id": "activeWindow"
+            },
+            {
+                "enabled": true,
+                "id": "spacer"
+            },
+            {
+                "enabled": true,
+                "id": "tray"
+            },
+            {
+                "enabled": true,
+                "id": "clock"
+            },
+            {
+                "enabled": true,
+                "id": "statusIcons"
+            },
+            {
+                "enabled": true,
+                "id": "power"
+            }
+        ],
+        "excludedScreens": [
+        ],
+        "persistent": true,
+        "popouts": {
+            "activeWindow": false,
+            "statusIcons": true,
+            "tray": true
+        },
+        "scrollActions": {
+            "brightness": true,
+            "volume": true,
+            "workspaces": true
+        },
+        "showOnHover": true,
+        "status": {
+            "showAudio": false,
+            "showBattery": true,
+            "showBluetooth": true,
+            "showKbLayout": false,
+            "showLockStatus": true,
+            "showMicrophone": false,
+            "showNetwork": true,
+            "showWifi": true
+        },
+        "tray": {
+            "background": true,
+            "compact": false,
+            "hiddenIcons": [
+            ],
+            "iconSubs": [
+            ],
+            "recolour": true
+        },
+        "workspaces": {
+            "activeIndicator": true,
+            "activeLabel": "󰮯",
+            "activeTrail": true,
+            "capitalisation": "preserve",
+            "label": "  ",
+            "maxWindowIcons": 5,
+            "occupiedBg": true,
+            "occupiedLabel": "󰮯",
+            "perMonitorWorkspaces": true,
+            "showWindows": false,
+            "showWindowsOnSpecialWorkspaces": true,
+            "shown": 3,
+            "specialWorkspaceIcons": [
+            ],
+            "windowIcons": [
+                {
+                    "icon": "sports_esports",
+                    "regex": "steam(_app_(default|[0-9]+))?"
+                }
+            ]
+        }
+    },
+    "border": {
+        "rounding": 20,
+        "thickness": 12
+    },
+    "dashboard": {
+        "dragThreshold": 30,
+        "enabled": true,
+        "mediaUpdateInterval": 500,
+        "performance": {
+            "showBattery": true,
+            "showCpu": true,
+            "showGpu": true,
+            "showMemory": true,
+            "showNetwork": true,
+            "showStorage": true
+        },
+        "resourceUpdateInterval": 1000,
+        "showMedia": true,
+        "showOnHover": false,
+        "showWeather": true
+    },
+    "general": {
+        "apps": {
+            "audio": [
+                "pavucontrol"
+            ],
+            "explorer": [
+                "dolphin"
+            ],
+            "playback": [
+                "mpv"
+            ],
+            "terminal": [
+                "kitty"
+            ]
+        },
+        "battery": {
+            "criticalLevel": 3,
+            "warnLevels": [
+                {
+                    "icon": "battery_android_frame_2",
+                    "level": 20,
+                    "message": "建议你给电脑充上电",
+                    "title": "电量低"
+                },
+                {
+                    "icon": "battery_android_frame_1",
+                    "level": 10,
+                    "message": "你<b>现在</b>应该为电脑插上充电器了",
+                    "title": "你看到上一条消息了吗?"
+                },
+                {
+                    "critical": true,
+                    "icon": "battery_android_alert",
+                    "level": 5,
+                    "message": "请立即插入充电器!!",
+                    "title": "电池电量低"
+                }
+            ]
+        },
+        "idle": {
+            "inhibitWhenAudio": true,
+            "lockBeforeSleep": true,
+            "timeouts": [
+                {
+                    "idleAction": "lock",
+                    "timeout": 180
+                },
+                {
+                    "idleAction": "dpms off",
+                    "returnAction": "dpms on",
+                    "timeout": 300
+                },
+                {
+                    "idleAction": "",
+                    "timeout": 600
+                }
+            ]
+        },
+        "logo": ""
+    },
+    "launcher": {
+        "actionPrefix": ">",
+        "actions": [
+            {
+                "command": [
+                    "autocomplete",
+                    "calc"
+                ],
+                "dangerous": false,
+                "description": "简单数学计算（基于 Qalc）",
+                "enabled": true,
+                "icon": "calculate",
+                "name": "计算器"
+            },
+            {
+                "command": [
+                    "autocomplete",
+                    "scheme"
+                ],
+                "dangerous": false,
+                "description": "更改当前配色方案",
+                "enabled": true,
+                "icon": "palette",
+                "name": "配色方案"
+            },
+            {
+                "command": [
+                    "autocomplete",
+                    "wallpaper"
+                ],
+                "dangerous": false,
+                "description": "更改当前壁纸",
+                "enabled": true,
+                "icon": "image",
+                "name": "壁纸"
+            },
+            {
+                "command": [
+                    "autocomplete",
+                    "variant"
+                ],
+                "dangerous": false,
+                "description": "更改当前配色变体",
+                "enabled": true,
+                "icon": "colors",
+                "name": "配色变体"
+            },
+            {
+                "command": [
+                    "autocomplete",
+                    "transparency"
+                ],
+                "dangerous": false,
+                "description": "更改 Shell 透明度",
+                "enabled": false,
+                "icon": "opacity",
+                "name": "Shell透明度"
+            },
+            {
+                "command": [
+                    "caelestia",
+                    "wallpaper",
+                    "-r"
+                ],
+                "dangerous": false,
+                "description": "切换到随机壁纸",
+                "enabled": true,
+                "icon": "casino",
+                "name": "随机壁纸"
+            },
+            {
+                "command": [
+                    "setMode",
+                    "light"
+                ],
+                "dangerous": false,
+                "description": "切换到浅色模式",
+                "enabled": true,
+                "icon": "light_mode",
+                "name": "浅色模式"
+            },
+            {
+                "command": [
+                    "setMode",
+                    "dark"
+                ],
+                "dangerous": false,
+                "description": "切换到深色模式",
+                "enabled": true,
+                "icon": "dark_mode",
+                "name": "深色模式"
+            },
+            {
+                "command": [
+                    "caelestia",
+                    "shell",
+                    "controlCenter",
+                    "open"
+                ],
+                "dangerous": false,
+                "description": "设置",
+                "enabled": true,
+                "icon": "settings",
+                "name": "设置"
+            }
+        ],
+        "dragThreshold": 50,
+        "enableDangerousActions": false,
+        "enabled": true,
+        "favouriteApps": [
+        ],
+        "hiddenApps": [
+        ],
+        "maxShown": 5,
+        "maxWallpapers": 9,
+        "showOnHover": false,
+        "specialPrefix": "@",
+        "useFuzzy": {
+            "actions": true,
+            "apps": true,
+            "schemes": false,
+            "variants": false,
+            "wallpapers": false
+        },
+        "vimKeybinds": true
+    },
+    "lock": {
+        "enableFprint": true,
+        "hideNotifs": false,
+        "maxFprintTries": 3,
+        "recolourLogo": false
+    },
+    "notifs": {
+        "actionOnClick": false,
+        "clearThreshold": 0.3,
+        "defaultExpireTimeout": 5000,
+        "expandThreshold": 20,
+        "expire": true,
+        "fullscreen": "on",
+        "groupPreviewNum": 3,
+        "openExpanded": false
+    },
+    "osd": {
+        "enableBrightness": true,
+        "enableMicrophone": false,
+        "enabled": true,
+        "hideDelay": 2000
+    },
+    "paths": {
+        "lockNoNotifsPic": "root:/assets/dino.png",
+        "lyricsDir": "/home/x68/Music/lyrics/",
+        "mediaGif": "root:/assets/bongocat.gif",
+        "noNotifsPic": "root:/assets/dino.png",
+        "sessionGif": "root:/assets/kurukuru.gif",
+        "wallpaperDir": "/home/x68/Pictures/Wallpapers"
+    },
+    "services": {
+        "audioIncrement": 0.1,
+        "brightnessIncrement": 0.1,
+        "defaultPlayer": "Spotify",
+        "gpuType": "GENERIC",
+        "lyricsBackend": "Auto",
+        "maxVolume": 1,
+        "playerAliases": [
+            {
+                "from": "com.github.th_ch.youtube_music",
+                "to": "YT Music"
+            }
+        ],
+        "smartScheme": true,
+        "useFahrenheit": false,
+        "useFahrenheitPerformance": false,
+        "useTwelveHourClock": false,
+        "visualiserBars": 45,
+        "weatherLocation": "Jinan"
+    },
+    "session": {
+        "commands": {
+            "hibernate": [
+                "systemctl",
+                "hibernate"
+            ],
+            "logout": [
+                "loginctl",
+                "terminate-user",
+                ""
+            ],
+            "reboot": [
+                "systemctl",
+                "reboot"
+            ],
+            "shutdown": [
+                "systemctl",
+                "poweroff"
+            ]
+        },
+        "dragThreshold": 30,
+        "enabled": true,
+        "icons": {
+            "hibernate": "downloading",
+            "logout": "logout",
+            "reboot": "cached",
+            "shutdown": "power_settings_new"
+        },
+        "vimKeybinds": false
+    },
+    "sidebar": {
+        "dragThreshold": 80,
+        "enabled": true
+    },
+    "utilities": {
+        "enabled": true,
+        "maxToasts": 4,
+        "quickToggles": [
+            {
+                "enabled": true,
+                "id": "wifi"
+            },
+            {
+                "enabled": true,
+                "id": "bluetooth"
+            },
+            {
+                "enabled": true,
+                "id": "mic"
+            },
+            {
+                "enabled": true,
+                "id": "settings"
+            },
+            {
+                "enabled": true,
+                "id": "gameMode"
+            },
+            {
+                "enabled": true,
+                "id": "dnd"
+            },
+            {
+                "enabled": false,
+                "id": "vpn"
+            }
+        ],
+        "toasts": {
+            "audioInputChanged": true,
+            "audioOutputChanged": true,
+            "capsLockChanged": true,
+            "chargingChanged": true,
+            "configLoaded": true,
+            "dndChanged": true,
+            "fullscreen": "off",
+            "gameModeChanged": true,
+            "kbLayoutChanged": true,
+            "nowPlaying": false,
+            "numLockChanged": true,
+            "vpnChanged": true
+        },
+        "vpn": {
+            "enabled": false,
+            "provider": [
+            ]
+        }
+    }
+}
