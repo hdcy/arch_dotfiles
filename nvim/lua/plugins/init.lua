@@ -14,6 +14,7 @@ return {
   -- Kotlin + Android syntax highlighting
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     opts = {
       ensure_installed = {
         "vim", "lua", "vimdoc",
