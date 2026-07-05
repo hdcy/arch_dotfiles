@@ -53,6 +53,11 @@
       "keycolor": "green"
     },
     {
+      "type": "bios",
+      "key": "",
+      "keycolor": "green"
+    },
+    {
       "type": "packages",
       "key": "",
       "keycolor": "yellow"
@@ -72,6 +77,11 @@
       "keycolor": "magenta"
     },
     {
+      "type": "memory",
+      "key": "",
+      "keycolor": "magenta"
+    },
+    {
       "type": "swap",
       "key": "",
       "keycolor": "magenta"
@@ -87,6 +97,11 @@
     },
     {
       "type": "terminal",
+      "key": "",
+      "keycolor": "yellow"
+    },
+    {
+      "type": "localip",
       "key": "",
       "keycolor": "yellow"
     },
