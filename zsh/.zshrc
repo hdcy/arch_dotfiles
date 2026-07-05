@@ -4,7 +4,7 @@ export PATH="$HOME/.local/bin:$PATH"
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="/usr/share/oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -12,6 +12,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="bira"
 # ZSH_THEME="powerlevel10k/powerlevel10k"
+
+ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -77,14 +79,14 @@ ZSH_THEME="bira"
 ZVM_VI_ESCAPE_BINDKEY=jj
 
 plugins=(
-    git 
-    zsh-autosuggestions 
+    git
+    zsh-autosuggestions
     zsh-syntax-highlighting
     zsh-completions
     colored-man-pages
     extract
     sudo
-    #zsh-vi-mode 
+    #zsh-vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -124,7 +126,7 @@ source $ZSH/oh-my-zsh.sh
 ##############
 #  个人配置  #
 ##############
-alias fastfetch='fastfetch --config ~/git_clone/dotfiles/fastfetch/config.jsonc'
+alias fastfetch='fastfetch --config ~/git_clone/arch_dotfiles/fastfetch/config.jsonc'
 fastfetch
 
 # 更改Nvim为默认编辑器
