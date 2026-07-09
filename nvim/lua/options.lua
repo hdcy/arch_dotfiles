@@ -1,0 +1,19 @@
+-- 编辑器基础设置
+vim.opt.number = true          -- 行号
+vim.opt.relativenumber = true  -- 相对行号
+vim.opt.tabstop = 4            -- Tab 宽度
+vim.opt.shiftwidth = 4         -- 缩进宽度
+vim.opt.expandtab = true       -- Tab 转空格
+vim.opt.smartindent = true
+vim.opt.wrap = false           -- 不自动折行
+vim.opt.cursorline = true      -- 高亮当前行
+vim.opt.termguicolors = true   -- 真彩色
+vim.opt.mouse = "a"            -- 鼠标支持
+vim.opt.clipboard = "unnamedplus" -- 系统剪贴板
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.signcolumn = "yes"     -- 始终显示标记列
+vim.opt.updatetime = 300       -- 更快的 CursorHold
+vim.opt.timeoutlen = 300       -- 更快的按键响应
+vim.opt.splitright = true      -- 垂直分屏在右
+vim.opt.splitbelow = true      -- 水平分屏在下

@@ -126,21 +126,14 @@ source $ZSH/oh-my-zsh.sh
 ##############
 #  个人配置  #
 ##############
-alias fastfetch='fastfetch --config ~/git_clone/arch_dotfiles/fastfetch/config.jsonc'
+alias fastfetch='fastfetch --config ~/workspace/git_clone/arch_dotfiles/fastfetch/config.jsonc'
 fastfetch
 
+#source /usr/share/nvm/init-nvm.sh
 # 更改Nvim为默认编辑器
 export EDITOR=nvim
 export VISUAL=nvim
 
-source /usr/share/nvm/init-nvm.sh
-export EDITOR=nvim
-export VISUAL=nvim
-
 # 启用CUDA加速
-export OLLAMA_CUDA=1
+# export OLLAMA_CUDA=1
 
-# Android开发环境
-export ANDROID_HOME="/home/x68/WorkSpace/environments/android-sdk"
-export ANDROID_SDK_ROOT="$ANDROID_HOME"
-export PATH="$ANDROID_HOME/platform-tools:$PATH"
