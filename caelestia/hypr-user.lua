@@ -73,13 +73,13 @@ end)
 hl.animation({
     leaf    = "workspaces",
     enabled = true,
-    speed   = 5,
+    speed   = 4,
     bezier  = "emphasizedDecel",
     style   = "slidevert",
 })
 
 -- === 滚动聚焦动画 ===
-hl.animation({ leaf = "windowsMove", enabled = true, speed = 5, bezier = "emphasizedDecel" })
+hl.animation({ leaf = "windowsMove", enabled = true, speed = 4, bezier = "standard" })
 
 -- ============================================================
 --                      快捷键
@@ -102,6 +102,10 @@ hl.bind("SUPER + SHIFT + J", function()
         hl.dispatch(hl.dsp.window.move({ workspace = ws.id + 1, follow = true }))
     end
 end)
+
+-- 启动器
+hl.unbind("SUPER + SUPER_L")
+hl.bind("SUPER + Space", hl.dsp.global("caelestia:launcher"), { release = true })
 
 -- 仪表盘
 hl.bind("SUPER + I", hl.dsp.global("caelestia:dashboard"))
