@@ -5,11 +5,14 @@
 -- === 覆盖通用设置 ===
 hl.config({
     general = {
-        layout = "scrolling", -- 无限平铺
+        layout          = "scrolling", -- 无限平铺
+        gaps_workspaces = 0,          -- 工作区外边距
+        gaps_in         = 10,           -- 窗口之间间距
+        gaps_out        = 16,          -- 窗口到屏幕边缘
     },
 
     scrolling = {
-        column_width             = 0.7,
+        column_width             = 0.8,
         fullscreen_on_one_column = true,
         direction                = "right",
         follow_focus             = true,
@@ -32,6 +35,7 @@ hl.config({
     },
     debug = {
         vfr= false,  -- 禁掉可变帧率，始终保持满帧
+        damage_tracking = 0, -- 禁止渲染器休眠
     },
 
     xwayland = {
@@ -44,7 +48,7 @@ hl.monitor({
     output   = "eDP-2",
     mode     = "2560x1600@300",
     position = "0x0",
-    scale    = 1.33,
+    scale    = 1.6,
 })
 
 -- === 窗口规则 ===

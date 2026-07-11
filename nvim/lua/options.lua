@@ -12,6 +12,7 @@ vim.opt.mouse = "a"            -- 鼠标支持
 vim.opt.clipboard = "unnamedplus" -- 系统剪贴板
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.scrolloff = 8          -- 光标离边缘 8 行时触发滚动
 vim.opt.signcolumn = "yes"     -- 始终显示标记列
 vim.opt.updatetime = 300       -- 更快的 CursorHold
 vim.opt.timeoutlen = 300       -- 更快的按键响应

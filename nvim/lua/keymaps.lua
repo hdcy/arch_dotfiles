@@ -31,6 +31,16 @@ map("n", "<leader>sx", "<cmd>close<CR>", { desc = "关闭分屏" })
 map("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "新标签" })
 map("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "关闭标签" })
 
+-- 大跳居中
+map("n", "<C-d>", "<C-d>zz", { desc = "向下半页 + 居中" })
+map("n", "<C-u>", "<C-u>zz", { desc = "向上半页 + 居中" })
+map("n", "G", "Gzz", { desc = "到末尾 + 居中" })
+map("n", "gg", "ggzz", { desc = "到开头 + 居中" })
+map("n", "n", "nzz", { desc = "下一匹配 + 居中" })
+map("n", "N", "Nzz", { desc = "上一匹配 + 居中" })
+map("n", "{", "{zz", { desc = "上一段落 + 居中" })
+map("n", "}", "}zz", { desc = "下一段落 + 居中" })
+
 -- 跳转行首行尾
 map({ "n", "v" }, "H", "^", { desc = "行首" })
 map({ "n", "v" }, "L", "g_", { desc = "行尾（不含换行）" })
