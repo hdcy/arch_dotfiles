@@ -13,6 +13,8 @@ hl.config({
         fullscreen_on_one_column = true,
         direction                = "right",
         follow_focus             = true,
+        wrap_focus               = false,
+        wrap_swapcol             = false,
         explicit_column_widths   = "0.2, 0.333, 0.5, 0.7, 0.92, 1.0",
     },
 
@@ -71,10 +73,13 @@ end)
 hl.animation({
     leaf    = "workspaces",
     enabled = true,
-    speed   = 7,
-    bezier  = "standard",
+    speed   = 5,
+    bezier  = "emphasizedDecel",
     style   = "slidevert",
 })
+
+-- === 滚动聚焦动画 ===
+hl.animation({ leaf = "windowsMove", enabled = true, speed = 5, bezier = "emphasizedDecel" })
 
 -- ============================================================
 --                      快捷键
@@ -83,6 +88,20 @@ hl.animation({
 -- 工作区切换
 hl.bind("SUPER + K", function() hl.dispatch(hl.dsp.focus({ workspace = "r-1" })) end)
 hl.bind("SUPER + J", function() hl.dispatch(hl.dsp.focus({ workspace = "r+1" })) end)
+
+-- 移动窗口到上下工作区
+hl.bind("SUPER + SHIFT + K", function()
+    local ws = hl.get_active_workspace()
+    if ws then
+        hl.dispatch(hl.dsp.window.move({ workspace = ws.id - 1, follow = true }))
+    end
+end)
+hl.bind("SUPER + SHIFT + J", function()
+    local ws = hl.get_active_workspace()
+    if ws then
+        hl.dispatch(hl.dsp.window.move({ workspace = ws.id + 1, follow = true }))
+    end
+end)
 
 -- 仪表盘
 hl.bind("SUPER + I", hl.dsp.global("caelestia:dashboard"))

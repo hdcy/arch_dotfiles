@@ -48,7 +48,7 @@ return {
     cursorSize                 = 24,
 
     -- Keybinds: Workspaces
-    kbMoveWinToWs              = "SUPER + ALT",
+    kbMoveWinToWs              = "SUPER + SHIFT",
     kbMoveWinToWsGroup         = "CTRL + SUPER + ALT",
     kbGoToWs                   = "SUPER",
     kbGoToWsGroup              = "CTRL + SUPER",
