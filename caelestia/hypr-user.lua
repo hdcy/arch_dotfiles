@@ -74,7 +74,8 @@ hl.animation({
     leaf    = "workspaces",
     enabled = true,
     speed   = 4,
-    bezier  = "emphasizedDecel",
+    -- bezier  = "emphasizedDecel",
+    bezier  = "standard",
     style   = "slidevert",
 })
 
@@ -85,27 +86,38 @@ hl.animation({ leaf = "windowsMove", enabled = true, speed = 4, bezier = "standa
 --                      快捷键
 -- ============================================================
 
--- 工作区切换
-hl.bind("SUPER + K", function() hl.dispatch(hl.dsp.focus({ workspace = "r-1" })) end)
-hl.bind("SUPER + J", function() hl.dispatch(hl.dsp.focus({ workspace = "r+1" })) end)
+-- 辅助函数：找有窗口的最高工作区 ID
+local function max_occupied()
+    local max_id = 0
+    for _, w in ipairs(hl.get_workspaces()) do
+        if w.windows > 0 and w.id > max_id then max_id = w.id end
+    end
+    return max_id
+end
 
--- 移动窗口到上下工作区
+-- 工作区切换（J 边界：最后一个有窗口的工作区 + 1）
+hl.bind("SUPER + K", function()
+    local ws = hl.get_active_workspace()
+    if ws and ws.id > 1 then hl.dispatch(hl.dsp.focus({ workspace = "r-1" })) end
+end)
+hl.bind("SUPER + J", function()
+    local ws = hl.get_active_workspace()
+    if ws and ws.id < max_occupied() + 1 then hl.dispatch(hl.dsp.focus({ workspace = "r+1" })) end
+end)
+
+-- 移动窗口到上下工作区（J 边界同上）
 hl.bind("SUPER + SHIFT + K", function()
     local ws = hl.get_active_workspace()
-    if ws then
-        hl.dispatch(hl.dsp.window.move({ workspace = ws.id - 1, follow = true }))
-    end
+    if ws and ws.id > 1 then hl.dispatch(hl.dsp.window.move({ workspace = ws.id - 1, follow = true })) end
 end)
 hl.bind("SUPER + SHIFT + J", function()
     local ws = hl.get_active_workspace()
-    if ws then
-        hl.dispatch(hl.dsp.window.move({ workspace = ws.id + 1, follow = true }))
-    end
+    if ws and ws.id < max_occupied() + 1 then hl.dispatch(hl.dsp.window.move({ workspace = ws.id + 1, follow = true })) end
 end)
 
 -- 启动器
-hl.unbind("SUPER + SUPER_L")
-hl.bind("SUPER + Space", hl.dsp.global("caelestia:launcher"), { release = true })
+-- hl.unbind("SUPER + SUPER_L")
+-- hl.bind("SUPER + Space", hl.dsp.global("caelestia:launcher"), { release = true })
 
 -- 仪表盘
 hl.bind("SUPER + I", hl.dsp.global("caelestia:dashboard"))

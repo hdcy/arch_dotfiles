@@ -388,7 +388,7 @@
         "mediaGif": "root:/assets/bongocat.gif",
         "noNotifsPic": "root:/assets/dino.png",
         "sessionGif": "root:/assets/kurukuru.gif",
-        "wallpaperDir": "/home/x68/Pictures/Wallpapers"
+        "wallpaperDir": "/home/x68/图片/wallpaper"
     },
     "services": {
         "audioIncrement": 0.1,
