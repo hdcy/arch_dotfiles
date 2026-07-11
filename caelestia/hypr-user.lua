@@ -30,6 +30,9 @@ hl.config({
         initial_workspace_tracking = false,
         layers_hog_keyboard_focus  = false,
     },
+    debug = {
+        vfr= false,  -- 禁掉可变帧率，始终保持满帧
+    },
 
     xwayland = {
         force_zero_scaling = true,
@@ -41,7 +44,7 @@ hl.monitor({
     output   = "eDP-2",
     mode     = "2560x1600@300",
     position = "0x0",
-    scale    = 1.6,
+    scale    = 1.33,
 })
 
 -- === 窗口规则 ===
@@ -73,14 +76,14 @@ end)
 hl.animation({
     leaf    = "workspaces",
     enabled = true,
-    speed   = 5,
+    speed   = 4,
     -- bezier  = "emphasizedDecel",
-    bezier  = "emphasizedDecel",
+    bezier  = "standard",
     style   = "slidevert",
 })
 
 -- === 滚动聚焦动画 ===
-hl.animation({ leaf = "windowsMove", enabled = true, speed = 5, bezier  = "emphasizedDecel" })
+hl.animation({ leaf = "windowsMove", enabled = true, speed = 4, bezier  = "standard" })
 
 -- ============================================================
 --                      快捷键
