@@ -73,14 +73,14 @@ end)
 hl.animation({
     leaf    = "workspaces",
     enabled = true,
-    speed   = 4,
+    speed   = 5,
     -- bezier  = "emphasizedDecel",
-    bezier  = "standard",
+    bezier  = "emphasizedDecel",
     style   = "slidevert",
 })
 
 -- === 滚动聚焦动画 ===
-hl.animation({ leaf = "windowsMove", enabled = true, speed = 4, bezier = "standard" })
+hl.animation({ leaf = "windowsMove", enabled = true, speed = 5, bezier  = "emphasizedDecel" })
 
 -- ============================================================
 --                      快捷键
@@ -138,6 +138,7 @@ hl.bind("SUPER + SHIFT + H", hl.dsp.layout("swapcol l"))
 hl.bind("SUPER + Y", hl.dsp.layout("fit all"))
 
 -- 浮动窗口切换（切入时缩小到 60% 居中）
+-- 注意：resize 的 { size = { x, y, relative } } 格式虽有类型警告但功能正常，勿改
 hl.bind("SUPER + ALT + Space", function()
     local win = hl.get_active_window()
     if win then
@@ -145,7 +146,7 @@ hl.bind("SUPER + ALT + Space", function()
             hl.dsp.window.float({ action = "off" })
         else
             hl.dsp.window.float({ action = "on" })
-            hl.dsp.window.resize({ size = { x = 60, y = 60, relative = true } })
+            hl.dsp.window.resize( { x = 60, y = 60, relative = true } )
             hl.dsp.window.center({})
         end
     end
