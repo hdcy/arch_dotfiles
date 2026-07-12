@@ -84,14 +84,14 @@ hl.window_rule({ match = { class = "Minecraft.*" }, opacity = "1.0 override", no
 hl.animation({
     leaf    = "workspaces",
     enabled = true,
-    speed   = 3,
+    speed   = 4,
     -- bezier  = "emphasizedDecel",
     bezier  = "standard",
     style   = "slidevert",
 })
 
 -- === 滚动聚焦动画 ===
-hl.animation({ leaf = "windowsMove", enabled = true, speed = 3, bezier  = "standard" })
+hl.animation({ leaf = "windowsMove", enabled = true, speed = 4, bezier  = "standard" })
 
 -- ============================================================
 --                      快捷键
