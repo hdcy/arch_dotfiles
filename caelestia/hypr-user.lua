@@ -8,7 +8,7 @@ hl.config({
         layout          = "scrolling", -- 无限平铺
         gaps_workspaces = 0,          -- 工作区外边距
         gaps_in         = 10,           -- 窗口之间间距
-        gaps_out        = 16,          -- 窗口到屏幕边缘
+        gaps_out        = 18,          -- 窗口到屏幕边缘
     },
 
     scrolling = {
@@ -80,14 +80,14 @@ end)
 hl.animation({
     leaf    = "workspaces",
     enabled = true,
-    speed   = 4,
+    speed   = 3,
     -- bezier  = "emphasizedDecel",
     bezier  = "standard",
     style   = "slidevert",
 })
 
 -- === 滚动聚焦动画 ===
-hl.animation({ leaf = "windowsMove", enabled = true, speed = 4, bezier  = "standard" })
+hl.animation({ leaf = "windowsMove", enabled = true, speed = 3, bezier  = "standard" })
 
 -- ============================================================
 --                      快捷键
