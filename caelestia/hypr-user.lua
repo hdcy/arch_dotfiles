@@ -71,6 +71,10 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("gsettings set org.gnome.desktop.interface toolbar-style 'icons'")
 end)
 
+-- === 不透明窗口：游戏/创作软件强制不透明 ===
+hl.window_rule({ match = { tag = "opaque_app" }, opacity = "1.0 override" })
+hl.window_rule({ match = { class = "Minecraft.*" }, opacity = "1.0 override", no_blur = true })
+
 -- === 手势：四指下滑锁屏 ===
 -- hl.gesture({ fingers = 4, direction = "down", action = function()
 --     hl.exec_cmd("loginctl lock-session")
