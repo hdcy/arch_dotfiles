@@ -88,19 +88,59 @@ hl.curve("smoothOut", { type = "bezier", points = { {0.25, 0.1}, {0.25, 1} } })
 hl.curve("smoothIn",  { type = "bezier", points = { {0.8, 0},    {0.6, 1} } })
 
 -- === 工作区切换 ===
-hl.animation({ leaf = "workspaces",  speed = 5, bezier = "smoothOut", style = "slidevert" })
+hl.animation({
+    leaf    = "workspaces",
+    enabled = true,
+    speed   = 5,
+    bezier  = "smoothOut",
+    style   = "slidevert",
+})
 
--- === 窗口打开/关闭 ===
-hl.animation({ leaf = "windows",     speed = 4, bezier = "smoothOut" })
-hl.animation({ leaf = "windowsIn",   speed = 4, bezier = "smoothOut", style = "popin 80%" })
-hl.animation({ leaf = "windowsOut",  speed = 3, bezier = "smoothIn",  style = "popin 80%" })
+-- === 窗口动画 ===
+hl.animation({
+    leaf    = "windows",
+    enabled = true,
+    speed   = 4,
+    bezier  = "smoothOut",
+})
+hl.animation({
+    leaf    = "windowsIn",
+    enabled = true,
+    speed   = 4,
+    bezier  = "smoothOut",
+    style   = "popin 80%",
+})
+hl.animation({
+    leaf    = "windowsOut",
+    enabled = true,
+    speed   = 3,
+    bezier  = "smoothIn",
+    style   = "popin 80%",
+})
 
 -- === 窗口移动 ===
-hl.animation({ leaf = "windowsMove", speed = 4, bezier = "smoothOut" })
+hl.animation({
+    leaf    = "windowsMove",
+    enabled = true,
+    speed   = 4,
+    bezier  = "smoothOut",
+})
 
 -- === 层动画（启动器、通知等） ===
-hl.animation({ leaf = "layersIn",    speed = 4, bezier = "smoothOut", style = "fade" })
-hl.animation({ leaf = "layersOut",   speed = 3, bezier = "smoothIn",  style = "fade" })
+hl.animation({
+    leaf    = "layersIn",
+    enabled = true,
+    speed   = 4,
+    bezier  = "smoothOut",
+    style   = "fade",
+})
+hl.animation({
+    leaf    = "layersOut",
+    enabled = true,
+    speed   = 3,
+    bezier  = "smoothIn",
+    style   = "fade",
+})
 
 
 -- ============================================================
