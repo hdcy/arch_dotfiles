@@ -222,8 +222,8 @@
                     "timeout": 180
                 },
                 {
-                    "idleAction": "",
-                    "returnAction": "",
+                    "idleAction": "dpms off",
+                    "returnAction": "dpms on",
                     "timeout": 300
                 },
                 {

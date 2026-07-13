@@ -2,6 +2,9 @@
 -- hypr-user.lua — 用户覆盖配置（from arch_dotfiles）
 -- ============================================================
 
+-- 双 GPU（AMD iGPU + NVIDIA dGPU）兼容：关显式同步和 modifier 协商
+hl.env("AQ_MGPU_NO_EXPLICIT", "1")
+
 -- === 覆盖通用设置 ===
 hl.config({
     general = {
@@ -80,18 +83,25 @@ hl.window_rule({ match = { class = "Minecraft.*" }, opacity = "1.0 override", no
 --     hl.exec_cmd("loginctl lock-session")
 -- end })
 
--- === 动画：工作区切换用 slidevert ===
-hl.animation({
-    leaf    = "workspaces",
-    enabled = true,
-    speed   = 4,
-    -- bezier  = "emphasizedDecel",
-    bezier  = "standard",
-    style   = "slidevert",
-})
+-- === Apple 风格动画曲线 ===
+hl.curve("smoothOut", { type = "bezier", points = { {0.25, 0.1}, {0.25, 1} } })
+hl.curve("smoothIn",  { type = "bezier", points = { {0.8, 0},    {0.6, 1} } })
 
--- === 滚动聚焦动画 ===
-hl.animation({ leaf = "windowsMove", enabled = true, speed = 4, bezier  = "standard" })
+-- === 工作区切换 ===
+hl.animation({ leaf = "workspaces",  speed = 5, bezier = "smoothOut", style = "slidevert" })
+
+-- === 窗口打开/关闭 ===
+hl.animation({ leaf = "windows",     speed = 4, bezier = "smoothOut" })
+hl.animation({ leaf = "windowsIn",   speed = 4, bezier = "smoothOut", style = "popin 80%" })
+hl.animation({ leaf = "windowsOut",  speed = 3, bezier = "smoothIn",  style = "popin 80%" })
+
+-- === 窗口移动 ===
+hl.animation({ leaf = "windowsMove", speed = 4, bezier = "smoothOut" })
+
+-- === 层动画（启动器、通知等） ===
+hl.animation({ leaf = "layersIn",    speed = 4, bezier = "smoothOut", style = "fade" })
+hl.animation({ leaf = "layersOut",   speed = 3, bezier = "smoothIn",  style = "fade" })
+
 
 -- ============================================================
 --                      快捷键
