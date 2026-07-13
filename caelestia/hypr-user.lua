@@ -87,12 +87,15 @@ hl.window_rule({ match = { class = "Minecraft.*" }, opacity = "1.0 override", no
 hl.curve("smoothOut", { type = "bezier", points = { {0.25, 0.1}, {0.25, 1} } })
 hl.curve("smoothIn",  { type = "bezier", points = { {0.8, 0},    {0.6, 1} } })
 
+-- === 轻微越界回弹曲线 ===
+hl.curve("bounce", { type = "spring", mass = 2, stiffness = 50, dampening = 16 })
+
 -- === 工作区切换 ===
 hl.animation({
     leaf    = "workspaces",
     enabled = true,
-    speed   = 5,
-    bezier  = "smoothOut",
+    speed   = 4,
+    spring  = "bounce",
     style   = "slidevert",
 })
 
@@ -101,21 +104,21 @@ hl.animation({
     leaf    = "windows",
     enabled = true,
     speed   = 4,
-    bezier  = "smoothOut",
+    spring  = "bounce",
 })
 hl.animation({
     leaf    = "windowsIn",
     enabled = true,
     speed   = 4,
-    bezier  = "smoothOut",
-    style   = "popin 80%",
+    spring  = "bounce",
+    style   = "slide right",
 })
 hl.animation({
     leaf    = "windowsOut",
     enabled = true,
     speed   = 3,
     bezier  = "smoothIn",
-    style   = "popin 80%",
+    style   = "slide right",
 })
 
 -- === 窗口移动 ===
@@ -123,7 +126,7 @@ hl.animation({
     leaf    = "windowsMove",
     enabled = true,
     speed   = 4,
-    bezier  = "smoothOut",
+    spring  = "bounce",
 })
 
 -- === 层动画（启动器、通知等） ===
