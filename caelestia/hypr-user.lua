@@ -116,7 +116,7 @@ hl.animation({
 hl.animation({
     leaf    = "windowsOut",
     enabled = true,
-    speed   = 3,
+    speed   = 10,
     bezier  = "smoothIn",
     style   = "slide right",
 })
