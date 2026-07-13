@@ -94,7 +94,7 @@ hl.curve("bounce", { type = "spring", mass = 2, stiffness = 50, dampening = 16 }
 hl.animation({
     leaf    = "workspaces",
     enabled = true,
-    speed   = 4,
+    speed   = 3,
     spring  = "bounce",
     style   = "slidevert",
 })
@@ -103,29 +103,29 @@ hl.animation({
 hl.animation({
     leaf    = "windows",
     enabled = true,
-    speed   = 4,
+    speed   = 3,
     spring  = "bounce",
 })
 hl.animation({
     leaf    = "windowsIn",
     enabled = true,
-    speed   = 4,
+    speed   = 3,
     spring  = "bounce",
-    style   = "slide right",
+    style   = "popin 1%",
 })
 hl.animation({
     leaf    = "windowsOut",
     enabled = true,
-    speed   = 8,
-    bezier  = "smoothIn",
-    style   = "slide right",
+    speed   = 3,
+    spring  = "bounce",
+    style   = "popin 1%",
 })
 
 -- === 窗口移动 ===
 hl.animation({
     leaf    = "windowsMove",
     enabled = true,
-    speed   = 4,
+    speed   = 3,
     spring  = "bounce",
 })
 
@@ -133,7 +133,7 @@ hl.animation({
 hl.animation({
     leaf    = "layersIn",
     enabled = true,
-    speed   = 4,
+    speed   = 3,
     bezier  = "smoothOut",
     style   = "fade",
 })
