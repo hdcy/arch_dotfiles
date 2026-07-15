@@ -89,13 +89,14 @@ hl.curve("smoothIn",  { type = "bezier", points = { {0.8, 0},    {0.6, 1} } })
 
 -- === 轻微越界回弹曲线 ===
 hl.curve("bounce", { type = "spring", mass = 2, stiffness = 50, dampening = 16 })
+hl.curve("bounceFast", { type = "spring", mass = 2, stiffness = 68, dampening = 18 })
 
 -- === 工作区切换 ===
 hl.animation({
     leaf    = "workspaces",
     enabled = true,
     speed   = 3,
-    spring  = "bounce",
+    spring  = "bounceFast",
     style   = "slidevert",
 })
 
@@ -104,20 +105,20 @@ hl.animation({
     leaf    = "windows",
     enabled = true,
     speed   = 3,
-    spring  = "bounce",
+    spring  = "bounceFast",
 })
 hl.animation({
     leaf    = "windowsIn",
     enabled = true,
     speed   = 3,
-    spring  = "bounce",
-    style   = "popin 1%",
+    spring  = "bounceFast",
+    style   = "slide right",
 })
 hl.animation({
     leaf    = "windowsOut",
     enabled = true,
     speed   = 3,
-    spring  = "bounce",
+    spring  = "bounceFast",
     style   = "popin 1%",
 })
 
@@ -126,7 +127,7 @@ hl.animation({
     leaf    = "windowsMove",
     enabled = true,
     speed   = 3,
-    spring  = "bounce",
+    spring  = "bounceFast",
 })
 
 -- === 层动画（启动器、通知等） ===
