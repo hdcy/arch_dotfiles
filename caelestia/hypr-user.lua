@@ -4,6 +4,7 @@
 
 -- 双 GPU（AMD iGPU + NVIDIA dGPU）兼容：关显式同步和 modifier 协商
 hl.env("AQ_MGPU_NO_EXPLICIT", "1")
+hl.env("AQ_DRM_DEVICES", "/dev/dri/card2")
 
 -- === 覆盖通用设置 ===
 hl.config({
