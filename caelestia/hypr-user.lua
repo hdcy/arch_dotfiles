@@ -31,6 +31,7 @@ hl.config({
         sensitivity                = 0.5,
         follow_mouse               = 0,
         float_switch_override_focus = 0,
+        focus_on_close = 2,
     },
 
     misc = {
