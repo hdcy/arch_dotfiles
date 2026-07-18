@@ -17,4 +17,12 @@ require("keymaps")
 require("autocmds")
 
 -- 插件（lua/plugins/ 下所有文件自动导入）
-require("lazy").setup({ { import = "plugins" } })
+require("lazy").setup(
+  { { import = "plugins" } },
+  {
+    change_detection = {
+      enabled = true,
+      notify = false,
+    },
+  }
+)
