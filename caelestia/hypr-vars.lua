@@ -19,8 +19,8 @@ return {
     blurSpecialWs              = false,
     blurPopups                 = true,
     blurInputMethods           = true,
-    blurSize                   = 8,
-    blurPasses                 = 2,
+    blurSize                   = 12,
+    blurPasses                 = 3,
     blurXray                   = false,
 
     -- Shadow

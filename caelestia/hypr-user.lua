@@ -91,7 +91,8 @@ hl.curve("smoothIn",  { type = "bezier", points = { {0.8, 0},    {0.6, 1} } })
 
 -- === 轻微越界回弹曲线 ===
 hl.curve("bounce", { type = "spring", mass = 2, stiffness = 50, dampening = 16 })
-hl.curve("bounceFast", { type = "spring", mass = 2, stiffness = 68, dampening = 18 })
+-- hl.curve("bounceFast", { type = "spring", mass = 2, stiffness = 68, dampening = 18 })
+hl.curve("bounceFast", { type = "spring", mass = 2, stiffness = 820, dampening = 64 })
 
 -- === 工作区切换 ===
 hl.animation({
