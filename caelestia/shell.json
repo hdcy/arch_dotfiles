@@ -417,9 +417,9 @@
                 "lock-session"
             ],
             "logout": [
-                "hyprctl",
-                "dispatch",
-                "hl.dsp.exit()"
+                "loginctl",
+                "terminate-user",
+                ""
             ],
             "reboot": [
                 "systemctl",

@@ -74,6 +74,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("sh -c 'systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP && sleep 2 && systemctl --user start xdg-desktop-portal.service xdg-desktop-portal-hyprland.service'")
     hl.exec_cmd("gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'")
     hl.exec_cmd("gsettings set org.gnome.desktop.interface toolbar-style 'icons'")
+    -- hl.exec_cmd("systemctl --user restart xdg-desktop-portal-hyprland")
 end)
 
 -- === 不透明窗口：游戏/创作软件强制不透明 ===
@@ -92,7 +93,7 @@ hl.curve("smoothIn",  { type = "bezier", points = { {0.8, 0},    {0.6, 1} } })
 -- === 轻微越界回弹曲线 ===
 hl.curve("bounce", { type = "spring", mass = 2, stiffness = 50, dampening = 16 })
 -- hl.curve("bounceFast", { type = "spring", mass = 2, stiffness = 68, dampening = 18 })
-hl.curve("bounceFast", { type = "spring", mass = 2, stiffness = 820, dampening = 64 })
+hl.curve("bounceFast", { type = "spring", mass = 2, stiffness = 600, dampening = 54 })
 
 -- === 工作区切换 ===
 hl.animation({
