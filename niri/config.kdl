@@ -83,6 +83,7 @@ output "eDP-2" {
     // 如果完全省略模式或模式无效，niri 将自动选择一个。
     // 在 niri 实例内运行 `niri msg outputs` 可列出所有输出及其模式。
     mode "2560x1600@300"
+    variable-refresh-rate
 
     // 你可以使用整数或分数缩放，例如使用 1.5 表示 150% 缩放。
     scale 1.6
@@ -107,13 +108,13 @@ output "eDP-2" {
 // https://niri-wm.github.io/niri/Configuration:-Layout
 layout {
     // 以逻辑像素设置窗口之间的间隙。
-    gaps 22
+    gaps 48
 
     // 切换焦点时何时居中列，选项如下：
     // - "never"：默认行为，聚焦屏幕外的列时将其保持在屏幕左边缘或右边缘。
     // - "always"：聚焦的列始终居中。
     // - "on-overflow"：如果聚焦的列与上一个聚焦的列不能同时放入屏幕，则居中。
-    center-focused-column "never"
+    center-focused-column "always"
 
     // 你可以自定义 "switch-preset-column-width"（Mod+R）切换的宽度预设。
     preset-column-widths {
@@ -132,7 +133,7 @@ layout {
     // preset-window-heights { }
 
     // 你可以更改新窗口的默认宽度。
-    default-column-width { proportion 0.8; }
+    default-column-width { proportion 0.9; }
     // 如果留空括号，窗口将自行决定其初始宽度。
     // default-column-width {}
 
@@ -243,8 +244,15 @@ layout {
     struts {
         // left 64
         // right 64
-        top -4
-        // bottom 64
+        top -32
+        bottom -16
+    }
+
+}
+
+gestures {
+    hot-corners {
+        off
     }
 }
 
@@ -287,9 +295,9 @@ animations {
     // off
 
     // 将所有动画减慢此倍数。低于 1 的值将加快动画。
-    slowdown 1.2
+    slowdown 1.5
 
-    // 窗口打开动画：缩短到 Hyprland 级别
+    // 窗口打开动画
     window-open {
         duration-ms 500
         curve "ease-out-expo"
@@ -334,7 +342,7 @@ window-rule {
 // 示例：为所有窗口启用圆角。
 // （此示例规则前面用 "/-" 注释掉了。）
 window-rule {
-    geometry-corner-radius 16
+    geometry-corner-radius 12
     clip-to-geometry true
 }
 
@@ -344,7 +352,7 @@ window-rule {
 }
 
 window-rule {
-    opacity 0.9
+    opacity 0.8
     background-effect {
         blur true
     }
@@ -399,7 +407,9 @@ binds {
     // 或在触摸板上四指向上滑动。
     Mod+D repeat=false { toggle-overview; }
 
-    Mod+C repeat=false { close-window; }
+    // Mod+C repeat=false { close-window; }
+    // 关闭前确认：foot 终端内有进程运行时弹确认框（防误触丢 nvim 缓冲区）
+    Mod+C repeat=false { spawn "/home/x68/.config/niri/scripts/close-confirm.sh"; }
 
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
@@ -409,6 +419,8 @@ binds {
     Mod+U     { focus-window-down; }
     Mod+I     { focus-window-up; }
     Mod+L     { focus-column-right; }
+
+    Mod+Alt+L { spawn "noctalia" "msg" "session" "lock"; }
 
     Mod+Ctrl+Left  { move-column-left; }
     Mod+Ctrl+Down  { move-window-down; }
@@ -538,13 +550,13 @@ binds {
     // 以下绑定将聚焦的窗口移入和移出列。
     // 如果窗口是单独的，它们会将其吸收到侧面附近的列中。
     // 如果窗口已在列中，它们会将其驱逐出来。
-    Mod+BracketLeft  { consume-or-expel-window-left; }
-    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+BracketLeft  { consume-window-into-column; }
+    Mod+BracketRight { expel-window-from-column; }
+    Mod+Shift+BracketLeft  { consume-or-expel-window-left; }
+    Mod+Shift+BracketRight { consume-or-expel-window-right; }
 
     // 从右侧吸收一个窗口到聚焦列的底部。
-    Mod+Comma  { consume-window-into-column; }
     // 将聚焦列的底部窗口驱逐到右侧。
-    Mod+Period { expel-window-from-column; }
 
     // 循环切换 preset-column-widths 中设置的宽度。
     Mod+R { switch-preset-column-width; }
@@ -614,6 +626,10 @@ binds {
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     Mod+X { spawn "noctalia" "msg" "panel-toggle" "session"; }
+    Mod+N { spawn "noctalia" "msg" "panel-toggle" "noctalia/notes:panel"; }
+    Mod+O { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
+    Mod+P { spawn "noctalia" "msg" "panel-toggle" "wallpaper"; }
+    Mod+Comma { spawn "noctalia" "msg" "settings-toggle"; }
 
     // quit 操作将显示确认对话框以避免意外退出。
     Mod+Shift+E { quit; }
@@ -626,9 +642,11 @@ binds {
     // noctalia
     // 启动器
     Mod+Space { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+    Ctrl+Alt+Space { spawn "foot" "btop"; }
 }
 
 // noctalia
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "noctalia"
 
 blur {

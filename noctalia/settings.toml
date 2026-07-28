@@ -1,11 +1,20 @@
+config_version = 8
+
+[accessibility]
+ui_scale = 1.0500000081956387
+
+[audio]
+enable_overdrive = true
+
 [bar.default]
 capsule = true
 capsule_padding = 12.0
-center = [ "weather", "workspaces", "audio_visualizer" ]
+center = [ "workspaces", "audio_visualizer" ]
 concave_edge_corners = false
 end = [ "tray", "group:g2", "clock", "session" ]
-margin_edge = 6
+margin_edge = 12
 radius = 16
+scale = 1.2000000104308128
 start = [ "control-center", "temp" ]
 
     [[bar.default.capsule_group]]
@@ -20,14 +29,68 @@ start = [ "control-center", "temp" ]
 sidebar = "full"
 width = 800
 
+[desktop_widgets]
+schema_version = 2
+widget_order = [ "desktop-widget-0000000000000001" ]
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget.desktop-widget-0000000000000001]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 800.0
+    cy = 500.0
+    output = "eDP-2"
+    rotation = 0.0
+    type = "fancy_audio_visualizer"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000001.settings]
+        background = false
+        background_color = "surface"
+        background_opacity = 0.80000000000000004
+        background_padding = 10
+        background_radius = 12
+        bar_width = 0.59999999999999998
+        bloom_intensity = 0.5
+        fade_when_idle = true
+        inner_diameter = 0.69999999999999996
+        primary_color = "primary"
+        ring_opacity = 0.80000000000000004
+        rotation_speed = 0.5
+        secondary_color = "secondary"
+        sensitivity = 1.1000000000000001
+        visualization_mode = "wave_rings"
+        wave_thickness = 1.0
+
+[idle]
+behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = true
+    timeout = 600.0
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = false
+    timeout = 900.0
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = true
+    timeout = 660.0
+
 [location]
 latitude = 36.68
 longitude = 117.11
 
 [lockscreen_widgets]
-enabled = false
+enabled = true
 schema_version = 2
-widget_order = [ "lockscreen-login-box@eDP-2" ]
+widget_order = [ "lockscreen-login-box@eDP-2", "lockscreen-widget-0000000000000001", "lockscreen-widget-0000000000000002" ]
 
     [lockscreen_widgets.grid]
     cell_size = 16
@@ -58,14 +121,55 @@ widget_order = [ "lockscreen-login-box@eDP-2" ]
         show_session_buttons = true
         show_weather = true
 
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
+    box_height = 160.0
+    box_width = 352.0
+    cx = 800.0
+    cy = 228.0
+    output = "eDP-2"
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000001.settings]
+        background = false
+        center_text = true
+        clock_style = "digital"
+        color = "secondary"
+        shadow = true
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000002]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 800.0
+    cy = 500.0
+    output = "eDP-2"
+    rotation = 0.0
+    type = "fancy_audio_visualizer"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000002.settings]
+        background = false
+        sensitivity = 1.0
+        visualization_mode = "wave_rings"
+
+[plugin_settings."noctalia/notes"]
+notes_dir = "/home/x68/文档/Notes"
+panel_open_near_click = true
+
+[plugins]
+enabled = [ "noctalia/notes" ]
+
 [shell]
 niri_overview_type_to_launch_enabled = true
 
+    [shell.animation]
+    speed = 0.65000000968575478
+
     [shell.launcher]
-    categories = false
+    app_grid = true
 
     [shell.panel]
     control_center_placement = "floating"
+    launcher_position = "auto"
     open_near_click_control_center = true
     open_near_click_session = true
     session_placement = "floating"
@@ -111,10 +215,10 @@ niri_overview_type_to_launch_enabled = true
 [theme]
 mode = "dark"
 source = "wallpaper"
-wallpaper_scheme = "dysfunctional"
+wallpaper_scheme = "m3-rainbow"
 
     [theme.templates]
-    builtin_ids = [ "foot" ]
+    builtin_ids = [ "foot", "niri" ]
 
 [wallpaper]
 directory = "/home/x68/图片/wallpaper"
@@ -123,13 +227,13 @@ directory = "/home/x68/图片/wallpaper"
     enabled = true
 
     [wallpaper.default]
-    path = "/home/x68/图片/wallpaper/illust_116733031_20240625_003948.png"
+    path = "/home/x68/图片/wallpaper/41F12C725491038C96EA335C55D362B7.jpg"
 
     [wallpaper.last]
-    path = "/home/x68/图片/wallpaper/illust_116733031_20240625_003948.png"
+    path = "/home/x68/图片/wallpaper/41F12C725491038C96EA335C55D362B7.jpg"
 
     [wallpaper.monitors.eDP-2]
-    path = "/home/x68/图片/wallpaper/illust_116733031_20240625_003948.png"
+    path = "/home/x68/图片/wallpaper/41F12C725491038C96EA335C55D362B7.jpg"
 
 [weather]
 effects = false
@@ -157,6 +261,9 @@ hidden = [ "网络" ]
 show_label = false
 
 [widget.wallpaper]
+enabled = false
+
+[widget.weather]
 enabled = false
 
 [widget.workspaces]
