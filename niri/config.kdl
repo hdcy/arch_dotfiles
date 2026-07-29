@@ -68,6 +68,11 @@ input {
     // focus-follows-mouse max-scroll-amount="0%"
 }
 
+// GPU 优化：NVIDIA 双 GPU 关闭显式同步 + overlay planes 加速
+debug {
+    enable-overlay-planes   // 直接扫描到 overlay plane，减少合成开销
+}
+
 // 你可以通过输出名称来配置输出，运行 `niri msg outputs` 可查看名称。
 // 笔记本内置显示器通常叫 "eDP-1"。
 // 更多信息见 wiki：
@@ -269,7 +274,7 @@ gestures {
 
 hotkey-overlay {
     // 取消注释此行以禁用启动时的"重要热键"弹窗。
-    // skip-at-startup
+    skip-at-startup
 }
 
 // 取消注释此行以请求客户端尽可能省略其客户端装饰。
