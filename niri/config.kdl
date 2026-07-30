@@ -250,7 +250,7 @@ layout {
         // left 64
         // right 64
         top -32
-        bottom -16
+        bottom -24
     }
 
 }
@@ -357,7 +357,7 @@ window-rule {
 }
 
 window-rule {
-    opacity 0.8
+    opacity 0.9
     background-effect {
         blur true
     }
