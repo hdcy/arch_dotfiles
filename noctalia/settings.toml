@@ -155,7 +155,7 @@ notes_dir = "/home/x68/文档/Notes"
 panel_open_near_click = true
 
 [plugins]
-enabled = [ "noctalia/notes", "noctalia/mpvpaper" ]
+enabled = [ "noctalia/notes" ]
 
 [shell]
 niri_overview_type_to_launch_enabled = true
@@ -227,13 +227,13 @@ transition_on_startup = true
     enabled = true
 
     [wallpaper.default]
-    path = "/home/x68/图片/wallpaper/37971AA251A5C9B4D92E65D675EEE12E.png"
+    path = "/home/x68/图片/wallpaper/illust_121867383_20240827_003524.jpg"
 
     [wallpaper.last]
-    path = "/home/x68/图片/wallpaper/37971AA251A5C9B4D92E65D675EEE12E.png"
+    path = "/home/x68/图片/wallpaper/illust_121867383_20240827_003524.jpg"
 
     [wallpaper.monitors.eDP-2]
-    path = "/home/x68/图片/wallpaper/37971AA251A5C9B4D92E65D675EEE12E.png"
+    path = "/home/x68/图片/wallpaper/illust_121867383_20240827_003524.jpg"
 
 [weather]
 effects = false
