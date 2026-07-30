@@ -91,7 +91,7 @@ output "eDP-2" {
     variable-refresh-rate
 
     // 你可以使用整数或分数缩放，例如使用 1.5 表示 150% 缩放。
-    scale 1.6
+    scale 2
 
     // transform 允许逆时针旋转输出，有效值为：
     // normal、90、180、270、flipped、flipped-90、flipped-180 和 flipped-270。
@@ -653,6 +653,7 @@ binds {
 // noctalia
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "noctalia"
+spawn-at-startup "/home/x68/.config/niri/scripts/auto-center-float.sh"
 
 blur {
     passes 4
