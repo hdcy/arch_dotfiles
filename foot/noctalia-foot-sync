@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+# noctalia-foot-sync — foot 终端热应用 noctalia 主题（单脚本常驻版）
+# systemd 直接 ExecStart 本脚本（脚本自带监听循环，无需 .path unit）
+set -euo pipefail
+
+# 主题文件路径（noctalia 生成）
+THEME_FILE="$HOME/.config/foot/themes/noctalia"
+POLL_INTERVAL="${NOCTALIA_FOOT_POLL:-2}"  # 轮询秒数（无 inotifywait 时用）
+
+apply_theme() {
+    [ -f "$THEME_FILE" ] || return 0
+
+    local FG BG C0 C1 C2 C3 C4 C5 C6 C7 B0 B1 B2 B3 B4 B5 B6 B7
+    get() { grep "^$1=" "$THEME_FILE" | head -1 | cut -d= -f2-; }
+
+    FG=$(get foreground); BG=$(get background)
+    C0=$(get regular0); C1=$(get regular1); C2=$(get regular2); C3=$(get regular3)
+    C4=$(get regular4); C5=$(get regular5); C6=$(get regular6); C7=$(get regular7)
+    B0=$(get bright0); B1=$(get bright1); B2=$(get bright2); B3=$(get bright3)
+    B4=$(get bright4); B5=$(get bright5); B6=$(get bright6); B7=$(get bright7)
+
+    # tty_nr -> /dev/pts/N（foot 主进程 fd/0 是 /dev/null，须从子进程 stat 取）
+    ttynr_to_pts() {
+        local major=$(( (($1) >> 8) & 0xFFF ))
+        local minor=$(( (($1) & 0xFF) | ((($1) >> 20) & 0xFF) ))
+        [ "$major" = "136" ] && echo "/dev/pts/$minor"
+    }
+
+    local ttys="" pid stat tty_nr tty
+    for pid in $(pgrep -x foot 2>/dev/null) $(pgrep -x zsh 2>/dev/null); do
+        stat=$(cat /proc/$pid/stat 2>/dev/null || true)
+        [ -z "$stat" ] && continue
+        tty_nr=$(echo "$stat" | awk '{print $7}')
+        [ -z "$tty_nr" ] || [ "$tty_nr" = "0" ] && continue
+        tty=$(ttynr_to_pts "$tty_nr")
+        [ -n "$tty" ] && ttys="$ttys $tty"
+    done
+    ttys=$(echo "$ttys" | tr ' ' '\n' | sort -u)
+    [ -z "$ttys" ] && return 0
+
+    local i c
+    for tty in $ttys; do
+        printf '\033]10;#%s\033\\' "$FG" > "$tty" 2>/dev/null || true
+        printf '\033]11;#%s\033\\' "$BG" > "$tty" 2>/dev/null || true
+        for i in 0 1 2 3 4 5 6 7; do
+            eval "c=\$C$i"; printf '\033]4;%s;#%s\033\\' "$i" "$c" > "$tty" 2>/dev/null || true
+        done
+        for i in 0 1 2 3 4 5 6 7; do
+            eval "c=\$B$i"; printf '\033]4;%s;#%s\033\\' "$((i+8))" "$c" > "$tty" 2>/dev/null || true
+        done
+        printf '\033]12;#%s\033\\' "$FG" > "$tty" 2>/dev/null || true
+    done
+}
+
+# 启动时先应用一次
+apply_theme
+
+# 常驻监听
+if command -v inotifywait >/dev/null 2>&1; then
+    while true; do
+        inotifywait -q -e close_write,modify "$THEME_FILE" >/dev/null 2>&1 || true
+        apply_theme
+    done
+else
+    local last=$(stat -c %Y "$THEME_FILE" 2>/dev/null || echo 0)
+    while true; do
+        sleep "$POLL_INTERVAL"
+        local now=$(stat -c %Y "$THEME_FILE" 2>/dev/null || echo 0)
+        if [ "$now" != "$last" ]; then
+            last="$now"
+            apply_theme
+        fi
+    done
+fi

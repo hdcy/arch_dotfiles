@@ -1,0 +1,10 @@
+[Unit]
+Description=Hot-apply noctalia theme to foot terminals
+
+[Service]
+Type=simple
+ExecStart=/home/x68/.config/foot/noctalia-foot-sync
+Restart=always
+
+[Install]
+WantedBy=default.target

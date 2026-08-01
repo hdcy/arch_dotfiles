@@ -4,61 +4,52 @@ Arch Linux 桌面环境配置文件，通过软链管理。
 
 ## 桌面环境
 
-- **系统**: Arch Linux
-- **桌面**: KDE Plasma 6 (Wayland)
-- **Shell**: Zsh + Oh My Zsh
-- **终端**: Kitty
-- **编辑器**: Neovim (lazy.nvim)
+- **系统**: Arch Linux (EndeavourOS)
+- **合成器**: niri 26.04（scrollable-tiling，2026-07 从 Hyprland 迁移）
+- **Shell**: noctalia 5.0.0-git（控制中心/剪贴板/壁纸）
+- **终端**: foot 1.27（主题 OSC 热应用）
+- **显示管理器**: SDDM (Wayland)
+- **输入法**: fcitx5 (mozc + 拼音)
+- **编辑器**: Neovim (lazy.nvim) / Kate
 - **文件管理器**: Dolphin / Yazi
+- **浏览器**: Zen Browser
 
 ## 目录结构
 
 ```
-├── zsh/                ← Zsh 配置
-│   ├── .zshrc          ← Oh My Zsh 主配置
-│   └── oh-my-zsh/      ← OMZ 自定义插件
-│       └── custom/plugins/
-│           ├── zsh-autosuggestions
-│           ├── zsh-completions
-│           └── zsh-syntax-highlighting
-├── kitty/              ← Kitty 终端配置
-│   └── kitty.conf
+├── zsh/                ← Zsh 配置（.zshrc 含 API key，git 提交时排除）
+├── foot/               ← Foot 终端配置 + noctalia-foot-sync 热应用脚本
+├── kitty/              ← Kitty 配置（历史备用，已弃用）
 ├── nvim/               ← Neovim 配置
-│   ├── init.lua        ← 入口，引导 lazy.nvim
-│   └── lua/
-│       ├── options.lua ← 编辑器基础设置
-│       ├── keymaps.lua ← 快捷键
-│       ├── autocmds.lua← 自动命令
-│       └── plugins/    ← 插件声明
-│           ├── ui.lua  ← 主题 + 文件树
-│           └── git.lua ← gitsigns
+├── niri/               ← niri 合成器配置（config.kdl + noctalia.kdl）
+├── caelestia/          ← Caelestia 配置（历史备用，已迁移到 noctalia）
+├── noctalia/           ← noctalia 配置
+├── systemd/            ← user 级 systemd unit（noctalia-foot-sync.service 等）
 ├── fastfetch/          ← Fastfetch 系统信息
-│   └── config.jsonc
 ├── yazi/               ← Yazi 文件管理器
-├── waybar/             ← Waybar 状态栏
-└── caelestia/          ← Caelestia 配置（暂存）
+├── waybar/             ← Waybar 配置（历史备用）
+└── scripts/            ← 辅助脚本
 ```
 
-## 软链部署
+## 部署方式
+
+所有配置通过**软链**从仓库指向 `~/.config/`：
 
 ```bash
-git clone git@github.com:hdcy/arch_dotfiles.git ~/workspace/git_clone/arch_dotfiles
+ln -s ~/workspace/git_clone/arch_dotfiles/foot ~/.config/foot
+ln -s ~/workspace/git_clone/arch_dotfiles/niri ~/.config/niri
+ln -s ~/workspace/git_clone/arch_dotfiles/systemd/user ~/.config/systemd/user
+# ... 依此类推
+```
 
-# Zsh
-ln -sf ~/workspace/git_clone/arch_dotfiles/zsh/.zshrc ~/.zshrc
-ln -sf ~/workspace/git_clone/arch_dotfiles/zsh/oh-my-zsh ~/.config/oh-my-zsh
+systemd 服务启用：
 
-# 终端 / 编辑器
-ln -sf ~/workspace/git_clone/arch_dotfiles/kitty     ~/.config/kitty
-ln -sf ~/workspace/git_clone/arch_dotfiles/nvim      ~/.config/nvim
-
-# 其他
-ln -sf ~/workspace/git_clone/arch_dotfiles/fastfetch ~/.config/fastfetch
-ln -sf ~/workspace/git_clone/arch_dotfiles/yazi      ~/.config/yazi
+```bash
+systemctl --user enable --now noctalia-foot-sync.service
 ```
 
 ## 注意事项
 
-- nvim 配置使用 lazy.nvim 管理插件，首次启动自动安装
-- oh-my-zsh 通过 pacman 安装至 `/usr/share/oh-my-zsh`，自定义插件在 dotfiles 中
-- Kitty 连接 Wayland 原生渲染，需 `--enable-features=UseOzonePlatform` 参数（已在 desktop 文件中设置）
+- `zsh/.zshrc` 含 API key，**提交时用 `git stash push zsh/.zshrc` 排除**
+- `foot/themes/noctalia`、`niri/noctalia.kdl` 由 noctalia 自动生成，可能随壁纸变化
+- 历史组件（Hyprland/caelestia/kitty）保留在仓库，未来可能回归
