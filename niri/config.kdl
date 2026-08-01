@@ -91,7 +91,7 @@ output "eDP-2" {
     variable-refresh-rate
 
     // 你可以使用整数或分数缩放，例如使用 1.5 表示 150% 缩放。
-    scale 2
+    scale 1.8
 
     // transform 允许逆时针旋转输出，有效值为：
     // normal、90、180、270、flipped、flipped-90、flipped-180 和 flipped-270。
@@ -302,10 +302,34 @@ animations {
     // 将所有动画减慢此倍数。低于 1 的值将加快动画。
     slowdown 1.5
 
-    // 窗口打开动画
+    // 窗口打开动画——spring 无回弹
     window-open {
-        duration-ms 500
-        curve "ease-out-expo"
+        spring damping-ratio=0.95 stiffness=900 epsilon=0.0001
+    }
+
+    // 窗口关闭动画——spring 无回弹
+    window-close {
+        spring damping-ratio=0.95 stiffness=900 epsilon=0.0001
+    }
+
+    // 窗口左右移动动画（consume/expel 等）——无回弹
+    window-movement {
+        spring damping-ratio=0.95 stiffness=900 epsilon=0.0001
+    }
+
+    // 横向视图滚动动画（列平移）——无回弹
+    horizontal-view-movement {
+        spring damping-ratio=0.95 stiffness=900 epsilon=0.0001
+    }
+
+    // 工作区切换动画——spring 无回弹
+    workspace-switch {
+        spring damping-ratio=0.95 stiffness=900 epsilon=0.0001
+    }
+
+    // Overview 缩放动画——spring 无回弹
+    overview-open-close {
+        spring damping-ratio=0.95 stiffness=900 epsilon=0.0001
     }
 }
 
@@ -604,8 +628,8 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // 在浮动和平铺布局之间移动聚焦的窗口。
-    Mod+V       { toggle-window-floating; }
-    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    Mod+Z       { toggle-window-floating; }
+    Mod+Shift+Z { switch-focus-between-floating-and-tiling; }
 
     // 切换标签式列显示模式。
     // 此列中的窗口将显示为垂直标签，而不是彼此堆叠。
@@ -634,6 +658,7 @@ binds {
     Mod+N { spawn "noctalia" "msg" "panel-toggle" "noctalia/notes:panel"; }
     Mod+O { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
     Mod+P { spawn "noctalia" "msg" "panel-toggle" "wallpaper"; }
+    Mod+V { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
     Mod+Comma { spawn "noctalia" "msg" "settings-toggle"; }
 
     // quit 操作将显示确认对话框以避免意外退出。
