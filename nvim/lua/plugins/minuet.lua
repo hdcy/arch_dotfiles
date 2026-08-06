@@ -3,7 +3,9 @@
 return {
   {
     "milanglacier/minuet-ai.nvim",
-    event = "InsertEnter",
+    lazy = false,
+    -- 去掉懒加载
+    -- event = "VeryLazy",
     config = function()
       require("minuet").setup({
         provider = "openai_fim_compatible",
@@ -17,7 +19,7 @@ return {
 
         -- 虚拟文本前端：像 Copilot 一样出灰色建议，不依赖 nvim-cmp
         virtualtext = {
-          auto_trigger_ft = { "lua", "python", "javascript", "typescript", "rust", "go", "c", "cpp", "sh", "bash" },
+          auto_trigger_ft = { "*" },
           keymap = {
             accept = "<A-a>",        -- 接受整条建议
             accept_line = "<A-l>",    -- 只接受当前行

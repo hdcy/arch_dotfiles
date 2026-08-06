@@ -304,32 +304,32 @@ animations {
 
     // 窗口打开动画——spring 无回弹
     window-open {
-        spring damping-ratio=0.95 stiffness=900 epsilon=0.0001
+        spring damping-ratio=0.95 stiffness=800 epsilon=0.0001
     }
 
     // 窗口关闭动画——spring 无回弹
     window-close {
-        spring damping-ratio=0.95 stiffness=900 epsilon=0.0001
+        spring damping-ratio=0.95 stiffness=800 epsilon=0.0001
     }
 
     // 窗口左右移动动画（consume/expel 等）——无回弹
     window-movement {
-        spring damping-ratio=0.95 stiffness=900 epsilon=0.0001
+        spring damping-ratio=0.95 stiffness=800 epsilon=0.0001
     }
 
     // 横向视图滚动动画（列平移）——无回弹
     horizontal-view-movement {
-        spring damping-ratio=0.95 stiffness=900 epsilon=0.0001
+        spring damping-ratio=0.95 stiffness=800 epsilon=0.0001
     }
 
     // 工作区切换动画——spring 无回弹
     workspace-switch {
-        spring damping-ratio=0.95 stiffness=900 epsilon=0.0001
+        spring damping-ratio=0.95 stiffness=800 epsilon=0.0001
     }
 
     // Overview 缩放动画——spring 无回弹
     overview-open-close {
-        spring damping-ratio=0.95 stiffness=900 epsilon=0.0001
+        spring damping-ratio=0.95 stiffness=800 epsilon=0.0001
     }
 }
 
@@ -381,7 +381,7 @@ window-rule {
 }
 
 window-rule {
-    opacity 0.9
+    opacity 0.85
     background-effect {
         blur true
     }
