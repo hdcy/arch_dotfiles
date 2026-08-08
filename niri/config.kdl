@@ -478,6 +478,9 @@ binds {
     Mod+Shift+H     { move-column-left; }
     Mod+Shift+J     { move-column-to-workspace-down; }
     Mod+Shift+K     { move-column-to-workspace-up; }
+    // 将所有窗口（整个工作区）一起移动到上一个/下一个工作区
+    Mod+Ctrl+Shift+J { move-workspace-down; }
+    Mod+Ctrl+Shift+K { move-workspace-up; }
     Mod+Shift+L     { move-column-right; }
 
     Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
@@ -485,8 +488,8 @@ binds {
     Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
     Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-    Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
-    Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
+    Mod+Shift+Alt+J     { move-column-to-monitor-down; }
+    Mod+Shift+Alt+K     { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
     // 或者，有只移动单个窗口的命令：
