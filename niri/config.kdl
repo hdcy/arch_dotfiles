@@ -400,7 +400,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // 运行程序的建议绑定：终端、应用启动器、屏幕锁。
-    Mod+Q hotkey-overlay-title="打开终端：alacritty" { spawn "foot"; }
+    Mod+Q hotkey-overlay-title="打开终端：alacritty" { spawn "kitty"; }
     // Mod+O hotkey-overlay-title="运行应用：fuzzel" { spawn "fuzzel"; }
     // Super+Alt+L hotkey-overlay-title="锁屏：swaylock" { spawn "swaylock"; }
 

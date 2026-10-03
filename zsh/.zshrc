@@ -137,3 +137,5 @@ export VISUAL=nvim
 # 启用CUDA加速
 # export OLLAMA_CUDA=1
 
+# 私密变量（API key 等）放 ~/.zshrc.local（该文件不入库）
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"

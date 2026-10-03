@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+# noctalia-kitty-sync — kitty 终端热应用 noctalia 主题（独立常驻版，与 foot 版互不干扰）
+# 原理：读 noctalia 生成的主题文件（与 foot 共用同一份）→ 转成 kitty 配色格式
+#       → 遍历 kitty 的 remote control socket，用 kitten @ set-colors 热换色
+# 依赖 kitty.conf 中的：allow_remote_control socket-only
+#                      listen_on unix:/home/x68/.cache/kitty-sock/k-{kitty_pid}
+set -euo pipefail
+
+# 主题文件（noctalia 生成，与 foot 共用）
+THEME_FILE="$HOME/.config/foot/themes/noctalia"
+POLL_INTERVAL="${NOCTALIA_KITTY_POLL:-2}"  # 轮询秒数（无 inotifywait 时用）
+SOCK_DIR="$HOME/.cache/kitty-sock"         # kitty listen_on 的 socket 目录
+
+apply_theme() {
+    [ -f "$THEME_FILE" ] || return 0
+    command -v kitten >/dev/null 2>&1 || return 0
+
+    local FG BG C0 C1 C2 C3 C4 C5 C6 C7 B0 B1 B2 B3 B4 B5 B6 B7
+    get() { grep "^$1=" "$THEME_FILE" | head -1 | cut -d= -f2-; }
+
+    FG=$(get foreground); BG=$(get background)
+    C0=$(get regular0); C1=$(get regular1); C2=$(get regular2); C3=$(get regular3)
+    C4=$(get regular4); C5=$(get regular5); C6=$(get regular6); C7=$(get regular7)
+    B0=$(get bright0); B1=$(get bright1); B2=$(get bright2); B3=$(get bright3)
+    B4=$(get bright4); B5=$(get bright5); B6=$(get bright6); B7=$(get bright7)
+
+    local kfile sfg sbg sock i c
+    kfile=$(mktemp -t noctalia-kitty-XXXX.conf)
+    sfg=$(get selection-foreground); sbg=$(get selection-background)
+    {
+        printf 'foreground #%s\n' "$FG"
+        printf 'background #%s\n' "$BG"
+        printf 'cursor #%s\n' "$FG"
+        if [ -n "$sfg" ]; then printf 'selection_foreground #%s\n' "$sfg"; fi
+        if [ -n "$sbg" ]; then printf 'selection_background #%s\n' "$sbg"; fi
+        for i in 0 1 2 3 4 5 6 7; do
+            eval "c=\$C$i"; printf 'color%s #%s\n' "$i" "$c"
+            eval "c=\$B$i"; printf 'color%s #%s\n' "$((i+8))" "$c"
+        done
+    } > "$kfile"
+
+    mkdir -p "$SOCK_DIR"
+    # 同步更新静态兜底文件：让"新启动的 kitty"一开就是正确颜色
+    cp -f "$kfile" "$HOME/.config/kitty/current-theme.conf" 2>/dev/null || true
+    for sock in "$SOCK_DIR"/k-[0-9]*; do
+        [ -S "$sock" ] || continue
+        kitten @ --to "unix:$sock" set-colors --all --configured "$kfile" >/dev/null 2>&1 || true
+    done
+    rm -f "$kfile"
+}
+
+# 启动时先应用一次
+apply_theme
+
+# 常驻监听
+if command -v inotifywait >/dev/null 2>&1; then
+    while true; do
+        inotifywait -q -e close_write,modify "$THEME_FILE" >/dev/null 2>&1 || true
+        apply_theme
+    done
+else
+    last=$(stat -c %Y "$THEME_FILE" 2>/dev/null || echo 0)
+    while true; do
+        sleep "$POLL_INTERVAL"
+        now=$(stat -c %Y "$THEME_FILE" 2>/dev/null || echo 0)
+        if [ "$now" != "$last" ]; then
+            last="$now"
+            apply_theme
+        fi
+    done
+fi

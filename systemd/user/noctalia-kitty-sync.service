@@ -1,0 +1,10 @@
+[Unit]
+Description=Hot-apply noctalia theme to kitty terminals
+
+[Service]
+Type=simple
+ExecStart=/home/x68/.config/kitty/noctalia-kitty-sync
+Restart=always
+
+[Install]
+WantedBy=default.target
